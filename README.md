@@ -91,7 +91,92 @@
         </code>
     </ul>
 
-    <!-- Additional API endpoints go here -->
+    <h3>Get All Tasks</h3>
+
+    <ul>
+        <li><strong>Endpoint:</strong> <code>GET /tasks</code></li>
+        <li><strong>Response:</strong></li>
+        <code>
+            <pre>
+                [
+                    {
+                        "id": "task-id-1",
+                        "title": "Task Title 1",
+                        "description": "Task Description 1",
+                        "status": "Completed",
+                        "createdAt": "2023-12-07T15:30:00.000Z"
+                    },
+                    {
+                        "id": "task-id-2",
+                        "title": "Task Title 2",
+                        "description": "Task Description 2",
+                        "status": "In Progress",
+                        "createdAt": "2023-12-07T16:45:00.000Z"
+                    }
+                    // ... other tasks
+                ]
+            </pre>
+        </code>
+    </ul>
+
+    <h3>Get a Specific Task</h3>
+
+    <ul>
+        <li><strong>Endpoint:</strong> <code>GET /tasks/:id</code></li>
+        <li><strong>Response:</strong></li>
+        <code>
+            <pre>
+                {
+                    "id": "task-id",
+                    "title": "Task Title",
+                    "description": "Task Description",
+                    "status": "In Progress",
+                    "createdAt": "2023-12-07T15:30:00.000Z"
+                }
+            </pre>
+        </code>
+    </ul>
+
+    <h3>Update a Task</h3>
+
+    <ul>
+        <li><strong>Endpoint:</strong> <code>PUT /tasks/:id</code></li>
+        <li><strong>Request Body:</strong></li>
+        <code>
+            <pre>
+                {
+                    "title": "Updated Task Title",
+                    "status": "Completed"
+                }
+            </pre>
+        </code>
+        <li><strong>Response:</strong></li>
+        <code>
+            <pre>
+                {
+                    "id": "task-id",
+                    "title": "Updated Task Title",
+                    "description": "Task Description",
+                    "status": "Completed",
+                    "createdAt": "2023-12-07T15:30:00.000Z"
+                }
+            </pre>
+        </code>
+    </ul>
+
+    <h3>Delete a Task</h3>
+
+    <ul>
+        <li><strong>Endpoint:</strong> <code>DELETE /tasks/:id</code></li>
+        <li><strong>Response:</strong></li>
+        <code>
+            <pre>
+                {
+                    "message": "Task deleted successfully"
+                }
+            </pre>
+        </code>
+    </ul>
 
     <h2>Contributing</h2>
 
