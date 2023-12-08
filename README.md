@@ -1,6 +1,6 @@
 # Task Management API
 
-This project implements a simple Task Management API using Express, Prisma, and MongoDB. It provides endpoints for creating, retrieving, updating, and deleting tasks. I also display data from a simple mock server created using JSON-server
+This project implements a simple Task Management API using Typescript, Express, Prisma, and MongoDB. It provides endpoints for creating, retrieving, updating, and deleting tasks. It also displays data from a simple mock server created using JSON-server
 
 ## Getting Started
 
