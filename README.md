@@ -1,187 +1,170 @@
-<!DOCTYPE html>
-<html lang="en">
+# Task Management API
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Management API</title>
-</head>
+This project implements a simple Task Management API using Express, Prisma, and MongoDB. It provides endpoints for creating, retrieving, updating, and deleting tasks. I also display data from a simple mock server created using JSON-server
 
-<body>
+## Getting Started
 
-    <h1>Task Management API</h1>
+### Prerequisites
 
-    <p>This project implements a simple Task Management API using Express, Prisma, and MongoDB. It provides endpoints for creating, retrieving, updating, and deleting tasks.</p>
+- Node.js installed
+- MongoDB server running
+- Prisma CLI installed globally: `npm install -g prisma`
 
-    <h2>Getting Started</h2>
+### Installation
 
-    <h3>Prerequisites</h3>
+1. Clone the repository:
+    ```
+    git clone https://github.com/your-username/task-management-api.git
+    cd task-management-api
+    ```
 
-    <ul>
-        <li>Node.js installed</li>
-        <li>MongoDB server running</li>
-        <li>Prisma CLI installed globally: <code>npm install -g prisma</code></li>
-    </ul>
+2. Install dependencies:
+    ```
+    npm install
+    ```
 
-    <h3>Installation</h3>
+3. Create a `.env` file in the project root and set your MongoDB connection URL. don't forget to include the database and cluster names in the url:
+    ```
+    DATABASE_URL=mongodb://your-mongodb-url
+    ```
 
-    <ol>
-        <li>Clone the repository:</li>
-        <code>
-            <pre>
-                git clone https://github.com/your-username/task-management-api.git
-                cd task-management-api
-            </pre>
-        </code>
-        <li>Install dependencies:</li>
-        <code>
-            <pre>
-                npm install
-            </pre>
-        </code>
-        <li>Create a <code>.env</code> file in the project root and set your MongoDB connection URL:</li>
-        <code>
-            <pre>
-                DATABASE_URL=mongodb://your-mongodb-url
-            </pre>
-        </code>
-        <li>Run Prisma migrations to create the database schema:</li>
-        <code>
-            <pre>
-                npx prisma migrate dev
-            </pre>
-        </code>
-        <li>Start the server:</li>
-        <code>
-            <pre>
-                npm start
-            </pre>
-        </code>
-    </ol>
+4. Run Prisma migrations to create the database schema:
+    ```
+    npx prisma migrate dev
+    ```
 
-    <p>The server will be running on <a href="http://localhost:3000">http://localhost:3000</a>.</p>
+5. Start the server:
+    ```
+    npm start
+    ```
 
-    <h2>API Documentation</h2>
+The server will be running on [http://localhost:3000](http://localhost:3000).
 
-    <h3>Create a Task</h3>
+## API Documentation
 
-    <ul>
-        <li><strong>Endpoint:</strong> <code>POST /tasks</code></li>
-        <li><strong>Request Body:</strong></li>
-        <code>
-            <pre>
-                {
-                    "title": "Task Title",
-                    "description": "Task Description",
-                    "status": "In Progress"
-                }
-            </pre>
-        </code>
-        <li><strong>Response:</strong></li>
-        <code>
-            <pre>
-                {
-                    "id": "generated-task-id",
-                    "title": "Task Title",
-                    "description": "Task Description",
-                    "status": "In Progress",
-                    "createdAt": "2023-12-07T15:30:00.000Z"
-                }
-            </pre>
-        </code>
-    </ul>
+### Get All Products
 
-    <h3>Get All Tasks</h3>
+- **Endpoint:** `GET /products`
+- **Response:**
+  ```json
+        [
+            {
+                "id": 1,
+                "name": "Laptop",
+                "description": "High-performance laptop with advanced features",
+                "price": 1200.99
+            },
+            {
+                "id": 2,
+                "name": "Smartphone",
+                "description": "Latest smartphone with a powerful camera",
+                "price": 799.99
+            },
+            {
+                "id": 3,
+                "name": "Wireless Headphones",
+                "description": "Noise-canceling wireless headphones for immersive audio",
+                "price": 149.99
+            },
+            {
+                "id": 4,
+                "name": "4K Smart TV",
+                "description": "Ultra HD Smart TV with streaming capabilities",
+                "price": 899.99
+            },
+            {
+                "id": 5,
+                "name": "Fitness Tracker",
+                "description": "Advanced fitness tracker with heart rate monitoring",
+                "price": 79.99
+            }
+        ]
+  ```
 
-    <ul>
-        <li><strong>Endpoint:</strong> <code>GET /tasks</code></li>
-        <li><strong>Response:</strong></li>
-        <code>
-            <pre>
-                [
-                    {
-                        "id": "task-id-1",
-                        "title": "Task Title 1",
-                        "description": "Task Description 1",
-                        "status": "Completed",
-                        "createdAt": "2023-12-07T15:30:00.000Z"
-                    },
-                    {
-                        "id": "task-id-2",
-                        "title": "Task Title 2",
-                        "description": "Task Description 2",
-                        "status": "In Progress",
-                        "createdAt": "2023-12-07T16:45:00.000Z"
-                    }
-                    // ... other tasks
-                ]
-            </pre>
-        </code>
-    </ul>
+### Create a Task
 
-    <h3>Get a Specific Task</h3>
+- **Endpoint:** `POST /tasks`
+- **Request Body:**
+  ```json
+  {
+        "title": "Task Title",
+        "description": "Task Description",
+        "status": "In Progress"
+  }
+  ```
+- **Response:**
+  ```json
+  {
+        "id": "generated-task-id",
+        "title": "Task Title",
+        "description": "Task Description",
+        "status": "In Progress",
+        "createdAt": "2023-12-07T15:30:00.000Z"
+  }
+  ```
 
-    <ul>
-        <li><strong>Endpoint:</strong> <code>GET /tasks/:id</code></li>
-        <li><strong>Response:</strong></li>
-        <code>
-            <pre>
-                {
-                    "id": "task-id",
-                    "title": "Task Title",
-                    "description": "Task Description",
-                    "status": "In Progress",
-                    "createdAt": "2023-12-07T15:30:00.000Z"
-                }
-            </pre>
-        </code>
-    </ul>
+### Get All Tasks
 
-    <h3>Update a Task</h3>
+- **Endpoint:** `GET /tasks`
+- **Response:**
+  ```json
+        [
+            {
+            "id": "task-id-1",
+            "title": "Task Title 1",
+            "description": "Task Description 1",
+            "status": "Completed",
+            "createdAt": "2023-12-07T15:30:00.000Z"
+        },
+        {
+            "id": "task-id-2",
+            "title": "Task Title 2",
+            "description": "Task Description 2",
+            "status": "In Progress",
+            "createdAt": "2023-12-07T16:45:00.000Z"
+        }
+        ]
+  ```
+### Get a Specific Task
 
-    <ul>
-        <li><strong>Endpoint:</strong> <code>PUT /tasks/:id</code></li>
-        <li><strong>Request Body:</strong></li>
-        <code>
-            <pre>
-                {
-                    "title": "Updated Task Title",
-                    "status": "Completed"
-                }
-            </pre>
-        </code>
-        <li><strong>Response:</strong></li>
-        <code>
-            <pre>
-                {
-                    "id": "task-id",
-                    "title": "Updated Task Title",
-                    "description": "Task Description",
-                    "status": "Completed",
-                    "createdAt": "2023-12-07T15:30:00.000Z"
-                }
-            </pre>
-        </code>
-    </ul>
+- **Endpoint:** `GET /tasks/:id`
+- **Response:**
+    ```json
+            {
+                "id": "task-id",
+                "title": "Task Title",
+                "description": "Task Description",
+                "status": "In Progress",
+                "createdAt": "2023-12-07T15:30:00.000Z"
+            }
+    ```
+### Update a Task
 
-    <h3>Delete a Task</h3>
+- **Endpoint:** `PUT /tasks/:id`
+- **Request Body:**
+    ```json
+        {
+            "title": "Updated Task Title",
+            "description":"Updated description",
+            "status": "Completed"
+        }
+    ```
+- **Response:**
+    ```json
+            {
+                "id": "task-id",
+                "title": "Updated Task Title",
+                "description": "Updated description",
+                "status": "Completed",
+                "createdAt": "2023-12-07T15:30:00.000Z"
+            }
+    ```
+### Delete a Task
 
-    <ul>
-        <li><strong>Endpoint:</strong> <code>DELETE /tasks/:id</code></li>
-        <li><strong>Response:</strong></li>
-        <code>
-            <pre>
-                {
-                    "message": "Task deleted successfully"
-                }
-            </pre>
-        </code>
-    </ul>
-
-    <h2>Contributing</h2>
-
-    <p>Feel free to contribute to this project by opening issues or submitting pull requests. Your feedback and contributions are highly appreciated!</p>
-
-</body>
-
-</html>
+- **Endpoint:** `DELETE /tasks/:id`
+- **Response:**
+    ```json
+            {
+                "message": "Task deleted successfully"
+            }
+    ```
